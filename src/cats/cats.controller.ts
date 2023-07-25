@@ -1,8 +1,11 @@
 import { Body, Controller, Delete, Get, Header, HttpCode, Param, Post, Put, Query, Redirect, Req } from '@nestjs/common';
-import { CreateCatDto } from './create-cat.dto';
+import { CreateCatDto } from './dto/create-cat.dto';
+import { CatsService } from './cats.service';
 
 @Controller('cats')
 export class CatsController {
+  constructor(private catsService: CatsService) {}
+
   @Post()
   @Header('Cache-Control', 'none')
   @HttpCode(204)
